@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @category    Ottemo
+ * @package     Ottemo_ExportData
+ * @author      Oleksii Golub <oleksii.v.golub@gmail.com>
+ */
+-->
+<config>
+    <modules>
+        <Ottemo_ExportData>
+            <version>1.0.0</version>
+        </Ottemo_ExportData>
+    </modules>
+    <global>
+        <blocks>
+            <ottemo_exportdata>
+                <class>Ottemo_ExportData_Block</class>
+            </ottemo_exportdata>
+        </blocks>
+        <helpers>
+            <ottemo_exportdata>
+                <class>Ottemo_ExportData_Helper</class>
+            </ottemo_exportdata>
+        </helpers>
+    </global>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <ottemo_exportdata before="Mage_Adminhtml">Ottemo_ExportData_Adminhtml</ottemo_exportdata>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+</config>

@@ -1,0 +1,60 @@
+<?php
+/** @var Ottemo_ExportData_Block_Ottemo_ImportExport $this */
+$data =  $this->getExportData();
+$attributes = $this->getProductAttributes();
+?>
+
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td><h3 class="icon-head head-tax-rate-importExport"><?php echo Mage::helper('ottemo_exportdata')->__('Export to Ottemo') ?></h3></td>
+        </tr>
+    </table>
+</div>
+
+<?php //echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php echo $this->getLayout()->createBlock('core/messages')->toHtml(); ?>
+
+<div class="entry-edit">
+    <div class="box-left">
+        <form id="export_form" action="<?php echo $this->getUrl('*/*/exportPost') ?>" method="post" enctype="multipart/form-data">
+            <?php echo $this->getBlockHtml('formkey')?>
+            <div class="entry-edit-head">
+                <h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('ottemo_exportdata')->__('Export') ?></h4>
+            </div>
+            <fieldset>
+                <legend><?php echo Mage::helper('ottemo_exportdata')->__('Export') ?></legend>
+                <label for="url">
+                    Url
+                </label>
+
+                <input id="url" type="text" name="url" required="required" value="<?php echo (!empty($data['url']) ? $data['url'] : ""); ?>" />
+                <label for="apiKey">
+                    Api Key
+                </label>
+                <input id="apiKey" type="text" required="required" name="apiKey" value="<?php echo (!empty($data['apiKey']) ? $data['apiKey'] : ""); ?>" />
+
+                <?php echo $this->getButtonHtml('Export', "this.form.submit()") ?>
+            </fieldset>
+            <div class="entry-edit-head">
+                <h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('ottemo_exportdata')->__('Attributes for export') ?></h4>
+            </div>
+            <fieldset>
+                <legend><?php echo Mage::helper('ottemo_exportdata')->__('Export') ?></legend>
+                <?php foreach ($attributes as $attribute) {
+                    $isChecked = true;
+                    if (isset($data['attributes']) && !isset($data['attributes'][$attribute['id']])) {
+                        $isChecked = false;
+                    }
+                    ?>
+                    <div>
+                        <input type="checkbox" id="attributes_<?php echo $attribute['id']; ?>" <?php if ($isChecked) {?> checked="checked" <?php } ?>
+                               name="attributes[<?php echo $attribute['id']; ?>]" value="1" />
+                        <label for="attributes_<?php echo $attribute['id']; ?>"><?php echo $attribute['label']; ?> (code: <?php echo $attribute['code']; ?>)</label>
+                    </div>
+                <?php } ?>
+            </fieldset>
+        </form>
+    </div>
+    <div class="clear"></div>
+</div>

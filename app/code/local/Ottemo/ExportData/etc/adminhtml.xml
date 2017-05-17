@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Ottemo
+ * @package     Ottemo_ExportData
+ * @author      Oleksii Golub <oleksii.v.golub@gmail.com>
+ */
+-->
+<config>
+    <menu>
+        <ottemo_exportdata translate="title" module="ottemo_exportdata">
+            <title>Ottemo</title>
+            <action>adminhtml/ottemo/export</action>
+            <sort_order>9999</sort_order>
+        </ottemo_exportdata>
+    </menu>
+
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <ottemo_exportdata translate="title" module="ottemo_exportdata">
+                        <title>Ottemo</title>
+                        <sort_order>9999</sort_order>
+                    </ottemo_exportdata>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
